@@ -12,26 +12,26 @@ class Stack < Formula
     depends_on arch: :arm64
 
     on_arm do
-      url "https://github.com/stack-sh/cli/releases/download/v0.5.0/stack-v0.5.0-aarch64-apple-darwin.tar.gz"
-      sha256 "cfa5e6459481dec73c0aca5b32d52293c977a4f5d72273f8ea9ce71c4f689ea2"
+      url "https://github.com/stack-sh/cli/releases/download/v0.5.1/stack-v0.5.1-aarch64-apple-darwin.tar.gz"
+      sha256 "00572032c4dcf54602e41c23ffeb2fa189709d16a8939fe3549de335f2de811e"
     end
 
     # Let Homebrew load the formula before reporting the ARM64 requirement.
     on_intel do
-      url "https://github.com/stack-sh/cli/releases/download/v0.5.0/stack-v0.5.0-x86_64-apple-darwin.tar.gz"
-      sha256 "d38e017c93a41855319fd583c4f0d6e62dc688b10ebeedbe925d07ba6dbb7e2b"
+      url "https://github.com/stack-sh/cli/releases/download/v0.5.1/stack-v0.5.1-x86_64-apple-darwin.tar.gz"
+      sha256 "d60f57a7a8f4fd1280fdd3b7c0871e9dbb53df23f4a5a168d843e469c9a05984"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/stack-sh/cli/releases/download/v0.5.0/stack-v0.5.0-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "506a03d1b430497539bfc2c57ff4a97962a983d1343c983700bc85719e5740cb"
+      url "https://github.com/stack-sh/cli/releases/download/v0.5.1/stack-v0.5.1-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "4fa61751a4bdd7d066255751549459b6303cfced9243f78a2baa41844719c0cf"
     end
 
     on_intel do
-      url "https://github.com/stack-sh/cli/releases/download/v0.5.0/stack-v0.5.0-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "b159e58c899f77798196616dd1a33fc6a04026cdc582861ee8ac257211abdb9d"
+      url "https://github.com/stack-sh/cli/releases/download/v0.5.1/stack-v0.5.1-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "a551f526501ac051457ac354f67d56a14817d59b7db37da103df30da4e7c96a9"
     end
   end
 
