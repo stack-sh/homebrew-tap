@@ -77,6 +77,10 @@ puts <<~FORMULA
 
     def install
       bin.install "stack"
+      bash_completion.install "share/bash-completion/completions/stack"
+      zsh_completion.install "share/zsh/site-functions/_stack"
+      fish_completion.install "share/fish/vendor_completions.d/stack.fish"
+      man1.install "share/man/man1/stack.1"
       doc.install "LICENSE", "NOTICE", "THIRD_PARTY_LICENSES.md"
     end
 
@@ -89,6 +93,11 @@ puts <<~FORMULA
 
       assert_path_exists testpath/"diagram.svg"
       assert_match "<svg", (testpath/"diagram.svg").read
+      assert_equal shell_output("\#{bin}/stack completions bash"), (bash_completion/"stack").read
+      assert_equal shell_output("\#{bin}/stack completions zsh"), (zsh_completion/"_stack").read
+      assert_equal shell_output("\#{bin}/stack completions fish"), (fish_completion/"stack.fish").read
+      assert_equal shell_output("\#{bin}/stack manpage"), (man1/"stack.1").read
+      assert_match ".TH STACK 1", (man1/"stack.1").read
     end
   end
 FORMULA
