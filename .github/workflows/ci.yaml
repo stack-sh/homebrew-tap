@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions: {}
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  source:
+    name: Source and upstream release
+    runs-on: ubuntu-24.04
+    permissions:
+      attestations: read
+      contents: read
+    steps:
+      - name: Set up Homebrew and tap
+        uses: Homebrew/actions/setup-homebrew@a657b8b0cd35d0f65cce41fce9b24cf054b49869 # 2026.08.24.1
+        with:
+          stable: true
+
+      - name: Verify generated source
+        run: scripts/test-formula-source.sh
+
+      - name: Verify upstream release mapping
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          scripts/update-stack-formula.sh 0.3.0
+          git diff --exit-code -- Formula/stack.rb metadata/stack-release.json
+
+      - name: Check repository diff
+        run: git diff --check
+
+  formula:
+    name: Formula (${{ matrix.name }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: macOS ARM64
+            runner: macos-26
+          - name: Linux ARM64
+            runner: ubuntu-24.04-arm
+          - name: Linux x86_64
+            runner: ubuntu-24.04
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: read
+    steps:
+      - name: Set up Homebrew and tap
+        id: setup-homebrew
+        uses: Homebrew/actions/setup-homebrew@a657b8b0cd35d0f65cce41fce9b24cf054b49869 # 2026.08.24.1
+        with:
+          stable: true
+
+      - name: Check formula syntax and style
+        env:
+          TAP_NAME: ${{ steps.setup-homebrew.outputs.tap-name }}
+        run: |
+          ruby -c Formula/stack.rb
+          brew style "$TAP_NAME"
+          brew audit --strict "$TAP_NAME/stack"
+
+      - name: Test install, upgrade, uninstall, and user data preservation
+        env:
+          TAP_NAME: ${{ steps.setup-homebrew.outputs.tap-name }}
+        run: scripts/test-formula-lifecycle.sh "$TAP_NAME"
+
+  baseline:
+    name: baseline
+    if: always()
+    needs:
+      - source
+      - formula
+    runs-on: ubuntu-24.04
+    permissions: {}
+    steps:
+      - name: Require every gate
+        env:
+          FORMULA_RESULT: ${{ needs.formula.result }}
+          SOURCE_RESULT: ${{ needs.source.result }}
+        run: |
+          test "$FORMULA_RESULT" = success
+          test "$SOURCE_RESULT" = success

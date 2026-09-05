@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "repository": "stack-sh/cli",
+  "version": "0.3.0",
+  "sourceCommit": "cb1ec1fdd91fc90ed8b2e2cb76f798a6f88df294",
+  "targets": {
+    "aarch64-apple-darwin": "10df35058c9e8438b331b69392f6b9840cbae3a5278105b0118c3942f62fc356",
+    "aarch64-unknown-linux-gnu": "2bed2ba5ff4a727646cedb4ec77ac875e09fc3ede996a963022d9a97ccdbf7ac",
+    "x86_64-apple-darwin": "23d8eea13ff2663e059b7ec91cbc8d6bca8825380766e87f1718c2dea217a49f",
+    "x86_64-unknown-linux-gnu": "6c9ab21d96fc6fb0a12a6ff4f7f56103d8dd8513ac85c8d30ab6e072c5c6a7d9"
+  }
+}
