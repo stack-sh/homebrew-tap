@@ -12,7 +12,7 @@
    scripts/update-stack-formula.sh MAJOR.MINOR.PATCH
    ```
 
-   The updater downloads the release manifest, checksum inventory, all four CLI archives, and their provenance and SBOM bundles. Three archives are installable on supported Homebrew hosts; the Intel macOS archive lets Homebrew load the formula before reporting the ARM64 requirement. The updater rejects draft or prerelease versions, manifest drift, missing or duplicate checksum entries, digest mismatch, an unexpected signer workflow or source ref, and self-hosted build provenance. It writes `metadata/stack-release.json` and the generated formula only after all checks pass.
+   The updater downloads the release manifest, checksum inventory, all four CLI archives, and their provenance and SBOM bundles. Three archives are installable on supported Homebrew hosts; the Intel macOS archive lets Homebrew load the formula before reporting the ARM64 requirement. The updater rejects draft or prerelease versions, manifest drift, missing or duplicate checksum entries, digest mismatch, an unexpected signer workflow or source ref, and self-hosted build provenance. It writes `metadata/stack-release.json` and the generated formula only after all checks pass. The lifecycle matrix then proves the archived bash, zsh, and fish completion files and `stack.1` are installed through Homebrew's managed paths and exactly match the binary generators.
 4. Review the generated formula and run the source test:
 
    ```sh

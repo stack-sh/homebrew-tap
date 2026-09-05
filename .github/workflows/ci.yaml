@@ -36,7 +36,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          scripts/update-stack-formula.sh 0.3.0
+          version=$(ruby -rjson -e 'puts JSON.parse(File.read("metadata/stack-release.json")).fetch("version")')
+          scripts/update-stack-formula.sh "$version"
           git diff --exit-code -- Formula/stack.rb metadata/stack-release.json
 
       - name: Check repository diff

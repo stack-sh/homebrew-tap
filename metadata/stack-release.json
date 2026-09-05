@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "repository": "stack-sh/cli",
-  "version": "0.3.0",
-  "sourceCommit": "cb1ec1fdd91fc90ed8b2e2cb76f798a6f88df294",
+  "version": "0.4.0",
+  "sourceCommit": "7f4066884f7902d4c582d45184f3a9019fe59bf7",
   "targets": {
-    "aarch64-apple-darwin": "10df35058c9e8438b331b69392f6b9840cbae3a5278105b0118c3942f62fc356",
-    "aarch64-unknown-linux-gnu": "2bed2ba5ff4a727646cedb4ec77ac875e09fc3ede996a963022d9a97ccdbf7ac",
-    "x86_64-apple-darwin": "23d8eea13ff2663e059b7ec91cbc8d6bca8825380766e87f1718c2dea217a49f",
-    "x86_64-unknown-linux-gnu": "6c9ab21d96fc6fb0a12a6ff4f7f56103d8dd8513ac85c8d30ab6e072c5c6a7d9"
+    "aarch64-apple-darwin": "dd43cf3d966a3dc28de3ac8752b6a98f19e4cb7cf6b04652ab73a013800cb015",
+    "aarch64-unknown-linux-gnu": "a0d76bfa9ed9e767fcd06dbeb7140234db865440210c7c3abf6c3db4f6983a6e",
+    "x86_64-apple-darwin": "48a72328fcf6d160a123a766d9701108f8ee9f633001581dab533b93dddf0827",
+    "x86_64-unknown-linux-gnu": "89d8a34c0da5f67932edff2641fe0a0527afbd120cfd5133cb38cdeffca55319"
   }
 }
